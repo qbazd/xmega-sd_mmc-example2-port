@@ -67,6 +67,7 @@
  *    \endcode
  */
 
+#include <xmega_a3bu_xplained_sd_mmc_add.h>
 #include <asf.h>
 #include "conf_example.h"
 #include <string.h>
@@ -96,6 +97,9 @@ int main(void)
 
 	sysclk_init();
 	board_init();
+
+	board_sd_mmc_spi_init();
+
 	stdio_serial_init(CONF_TEST_USART, &usart_serial_options);
 
 	/* Initialize SD MMC stack */

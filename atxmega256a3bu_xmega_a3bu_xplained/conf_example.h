@@ -45,8 +45,8 @@
 
 #include "board.h"
 
-//! \note Using USART on PORTC (PC2 & PC3)
-#define CONF_TEST_USART      &USARTC0
+//! \note Using USART on PORTE (PC2 & PC3)
+#define CONF_TEST_USART      &USARTE0
 //! \note 38.4kbps
 #define CONF_TEST_BAUDRATE   38400
 //! \note 8-bit character length

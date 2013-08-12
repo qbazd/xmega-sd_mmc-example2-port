@@ -7,14 +7,26 @@
 //! \name SPI microSD
 //@{
 #define SD_MMC_SPI_MEM_CNT              1
-#define SD_MMC_0_CD_GPIO                IOPORT_CREATE_PIN(PORTE, 4)
+#define SD_MMC_0_CD_GPIO                IOPORT_CREATE_PIN(PORTC, 6)
 #define SD_MMC_0_CD_DETECT_VALUE        0
 #define SD_MMC_SPI_USES_USART_SPI_SERVICE // To signal that is a USART in SPI mode
-#define SD_MMC_SPI                      &USARTD0
-#define SD_MMC_SPI_SCK                  IOPORT_CREATE_PIN(PORTD, 1)
-#define SD_MMC_SPI_MISO                 IOPORT_CREATE_PIN(PORTD, 2)
-#define SD_MMC_SPI_MOSI                 IOPORT_CREATE_PIN(PORTD, 3)
-#define SD_MMC_SPI_0_CS                 IOPORT_CREATE_PIN(PORTE, 5)
+#define SD_MMC_SPI                      &USARTC0
+#define SD_MMC_SPI_SCK                  IOPORT_CREATE_PIN(PORTC, 1)
+#define SD_MMC_SPI_MISO                 IOPORT_CREATE_PIN(PORTC, 2)
+#define SD_MMC_SPI_MOSI                 IOPORT_CREATE_PIN(PORTC, 3)
+#define SD_MMC_SPI_0_CS                 IOPORT_CREATE_PIN(PORTC, 7)
+
+//#define SD_MMC_SPI_MEM_CNT              1
+//#define SD_MMC_0_CD_GPIO                IOPORT_CREATE_PIN(PORTE, 4)
+//#define SD_MMC_0_CD_DETECT_VALUE        0
+//#define SD_MMC_SPI_USES_USART_SPI_SERVICE // To signal that is a USART in SPI mode
+//#define SD_MMC_SPI                      &USARTD0
+//#define SD_MMC_SPI_SCK                  IOPORT_CREATE_PIN(PORTD, 1)
+//#define SD_MMC_SPI_MISO                 IOPORT_CREATE_PIN(PORTD, 2)
+//#define SD_MMC_SPI_MOSI                 IOPORT_CREATE_PIN(PORTD, 3)
+//#define SD_MMC_SPI_0_CS                 IOPORT_CREATE_PIN(PORTE, 5)
+
+
 //@}
 
 

@@ -45,29 +45,31 @@
 #ifndef CONF_BOARD_H_INCLUDED
 #define CONF_BOARD_H_INCLUDED
 
-// Initialize SPI and control pins for UG_2832HSWEG04 OLED controller
-//#define CONF_BOARD_OLED_UG_2832HSWEG04
+// Initialize IO pins for the LCD controller
+//#define CONF_BOARD_C12832A1Z
 
-// Initialize SPI pins and presence pin for MicroSD card slot
-#define CONF_BOARD_SD_MMC_SPI
+// Initialize IO pins for the DataFlash
+//#define CONF_BOARD_AT45DBX
 
-// Initialize Analog Comparator pin for light sensor
-//#define CONF_BOARD_LIGHT_SENSOR
-
-// Initialize Analog Comparator pin for NTC sensor
-//#define CONF_BOARD_TEMPERATURE_SENSOR
-
-// Initialize Analog Comparator pin and input signal pin
-// for Analog Filter (lowpass RC @ 159 Hz)
-//#define CONF_BOARD_ANALOG_FILTER
+// Initialize IO pins for use with Analog Comparator
+//#define CONF_BOARD_ENABLE_AC_PINS
 
 // Initialize IO pins for use with USART 0 on port C
-#define CONF_BOARD_ENABLE_USARTC0
+//#define CONF_BOARD_ENABLE_USARTC0
 
 // Initialize IO pins for use with USART 0 on port D
 //#define CONF_BOARD_ENABLE_USARTD0
 
 // Initialize IO pins for use with USART 0 on port E
-//#define CONF_BOARD_ENABLE_USARTE0
+#define CONF_BOARD_ENABLE_USARTE0
+
+// Enable Sensors Xplained board interface
+//#define SENSORS_XPLAINED_BOARD
+
+// Enable AT86RFx interface
+//#define CONF_BOARD_AT86RFX
+
+// Initialize SPI pins and presence pin for MicroSD card slot
+#define CONF_BOARD_SD_MMC_SPI
 
 #endif /* CONF_BOARD_H_INCLUDED */

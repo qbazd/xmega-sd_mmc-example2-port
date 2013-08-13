@@ -1,1 +1,11 @@
-/asf
+
+*.o
+*.elf
+*.hex
+*.lss
+*.map
+*.sym
+*.d
+
+atxmega256a3bu_xmega_a3bu_xplained/asf-*
+

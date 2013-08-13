@@ -39,8 +39,6 @@
 # Path to top level ASF directory relative to this project directory.
 PRJ_PATH = ../..
 
-ASF_VER = asf
-
 # Microcontroller: atxmega128a1, atmega128, attiny261, etc.
 MCU = atxmega256a3bu
 
@@ -105,9 +103,10 @@ CFLAGS =
 CPPFLAGS = \
        -D BOARD=XMEGA_A3BU_XPLAINED                       \
        -D CONFIG_NVM_IGNORE_XMEGA_A3_D3_REVB_ERRATA       \
-       -D GFX_MONO_C12832_A1Z=1                           \
        -D NUMBER_OF_PORTS=1                               \
        -D IOPORT_XMEGA_COMPAT
+
+#       -D GFX_MONO_C12832_A1Z=1                           \
 
 # Extra flags to use when linking
 LDFLAGS =  \

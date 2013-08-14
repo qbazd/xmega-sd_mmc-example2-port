@@ -72,6 +72,48 @@
 #include "conf_example.h"
 #include <string.h>
 
+FRESULT scan_files (
+    char* path        /* Start node to be scanned (also used as work area) */
+)
+{
+    FRESULT res;
+    FILINFO fno;
+    DIR dir;
+    int i;
+    char *fn;   /* This function is assuming non-Unicode cfg. */
+#if _USE_LFN
+    static char lfn[_MAX_LFN + 1];
+    fno.lfname = lfn;
+    fno.lfsize = sizeof lfn;
+#endif
+
+
+    res = f_opendir(&dir, path);                       /* Open the directory */
+    if (res == FR_OK) {
+        i = strlen(path);
+        for (;;) {
+            res = f_readdir(&dir, &fno);                   /* Read a directory item */
+            if (res != FR_OK || fno.fname[0] == 0) break;  /* Break on error or end of dir */
+            if (fno.fname[0] == '.') continue;             /* Ignore dot entry */
+#if _USE_LFN
+            fn = *fno.lfname ? fno.lfname : fno.fname;
+#else
+            fn = fno.fname;
+#endif
+            if (fno.fattrib & AM_DIR) {                    /* It is a directory */
+                sprintf(&path[i], "/%s", fn);
+                res = scan_files(path);
+                if (res != FR_OK) break;
+                path[i] = 0;
+            } else {                                       /* It is a file. */
+                printf("%s/%s %ld\n\r", path, fn, fno.fsize);
+            }
+        }
+    }
+
+    return res;
+}
+
 /**
  * \brief Application entry point.
  *
@@ -148,8 +190,29 @@ int main(void)
 			goto main_end_of_test;
 		}
 		printf("[OK]\r\n");
+
+{
+		printf("Write to test file (f_printf)...\r\n");
+        uint32_t timestamp;
+        uint32_t fattime;
+        struct calendar_date cal;
+
+        /* Retrieve timestamp and convert to date and time */
+        timestamp = rtc_get_time();
+        calendar_timestamp_to_date(timestamp, &cal);
+ 
+		if (0 == f_printf(&file_object, "current date: %d-%d-%d %d:%d:%d\n", cal.year, cal.month, cal.date, cal.hour, cal.minute, cal.second)){
+			f_close(&file_object);
+			printf("[FAIL]\r\n");
+			goto main_end_of_test;
+		}
+		printf("[OK]\r\n");
+}
 		f_close(&file_object);
 		printf("Test successfull.\n\r");
+
+		printf("Scan dir (scan_files)...\r\n");
+		scan_files("");
 
 main_end_of_test:
 		printf("Please unplug the card.\n\r");
